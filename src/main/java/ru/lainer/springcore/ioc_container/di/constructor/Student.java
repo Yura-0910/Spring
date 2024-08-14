@@ -1,4 +1,4 @@
-package ru.lainer.springcore.ioc_container.introduction;
+package ru.lainer.springcore.ioc_container.di.constructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

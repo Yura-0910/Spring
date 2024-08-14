@@ -1,11 +1,11 @@
-package ru.lainer.springcore.ioc_container.introduction;
+package ru.lainer.springcore.ioc_container.di.constructor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("ru.lainer.springcore.ioc_container.introduction")
+@ComponentScan("ru.lainer.springcore.ioc_container.di")
 public class Config {
 
   @Bean

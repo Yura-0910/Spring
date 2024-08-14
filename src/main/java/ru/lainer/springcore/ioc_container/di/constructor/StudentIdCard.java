@@ -1,4 +1,4 @@
-package ru.lainer.springcore.ioc_container.introduction;
+package ru.lainer.springcore.ioc_container.di.constructor;
 
 
 public class StudentIdCard {

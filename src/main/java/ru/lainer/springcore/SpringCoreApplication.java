@@ -4,6 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.lainer.springcore.ioc_container.autowiring.by_name.Bean1;
+import ru.lainer.springcore.ioc_container.autowiring.by_name.ConfigByName;
+import ru.lainer.springcore.ioc_container.autowiring.by_type.Bean3;
+import ru.lainer.springcore.ioc_container.autowiring.by_type.ConfigByType;
 import ru.lainer.springcore.ioc_container.di.setter.AnotherStudent;
 import ru.lainer.springcore.ioc_container.di.setter.ConfigForDISetters;
 import ru.lainer.springcore.ioc_container.instantiation.ifm.ConfigForCourses;
@@ -28,7 +32,8 @@ public class SpringCoreApplication {
     student.printInfo();
 
     //Для DI через setter
-    ApplicationContext contextForSetter = new AnnotationConfigApplicationContext(ConfigForDISetters.class);
+    ApplicationContext contextForSetter = new AnnotationConfigApplicationContext(
+        ConfigForDISetters.class);
     AnotherStudent anotherStud = contextForSetter.getBean(AnotherStudent.class);
     anotherStud.printInfo();
 
@@ -44,7 +49,7 @@ public class SpringCoreApplication {
 
     //При создании(Instantiation) данного Bean-а был использован "Static Factory Method"
     ApplicationContext contextThree = new AnnotationConfigApplicationContext(
-                                                                           ConfigForCompass.class);
+        ConfigForCompass.class);
     Compass compass = (Compass) contextThree.getBean("compass");
     System.out.println(compass);
 
@@ -56,6 +61,11 @@ public class SpringCoreApplication {
     //При создании(Instantiation) данного Bean-а был использован "Instance Factory Method"
     Courses coursesJava = (Courses) contextFour.getBean("java");
     coursesJava.getCourseDetail();
+
+    //Для демонстрации такого типа Autowired, как "byName"
+    ApplicationContext contextByName = new AnnotationConfigApplicationContext(ConfigByName.class);
+    Bean1 bean1 = contextByName.getBean(Bean1.class);
+    bean1.printInfo();
   }
 
 }

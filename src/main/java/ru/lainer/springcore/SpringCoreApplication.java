@@ -66,6 +66,11 @@ public class SpringCoreApplication {
     ApplicationContext contextByName = new AnnotationConfigApplicationContext(ConfigByName.class);
     Bean1 bean1 = contextByName.getBean(Bean1.class);
     bean1.printInfo();
+
+    //Для демонстрации такого типа Autowired, как "byType"
+    ApplicationContext contextByType = new AnnotationConfigApplicationContext(ConfigByType.class);
+    Bean3 bean3 = contextByType.getBean(Bean3.class);
+    bean3.printInfo();
   }
 
 }

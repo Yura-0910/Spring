@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.lainer.springcore.ioc_container.annotation_based.qualifier.ConfigStore;
+import ru.lainer.springcore.ioc_container.annotation_based.qualifier.Magnet;
 import ru.lainer.springcore.ioc_container.autowiring.by_name.Bean1;
 import ru.lainer.springcore.ioc_container.autowiring.by_name.ConfigByName;
 import ru.lainer.springcore.ioc_container.autowiring.by_type.Bean3;
@@ -71,6 +73,17 @@ public class SpringCoreApplication {
     ApplicationContext contextByType = new AnnotationConfigApplicationContext(ConfigByType.class);
     Bean3 bean3 = contextByType.getBean(Bean3.class);
     bean3.printInfo();
+
+    /*
+      Для демонстрации @Autowire:: внедряем объект типа "generic interface", где
+      типа generic-а используется как "Qualifier" (qualifier = String и qualifier = Integer)
+    */
+    ApplicationContext qualifier = new AnnotationConfigApplicationContext(ConfigStore.class);
+    Magnet magnet = qualifier.getBean(Magnet.class);
+    magnet.print();
+    magnet.printDouble();
+    magnet.printMapDouble();
+    magnet.printArrayDouble();
   }
 
 }

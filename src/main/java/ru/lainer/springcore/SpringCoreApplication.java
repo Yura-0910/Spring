@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.lainer.springcore.ioc_container.annotation_based.qualifier.ConfigStore;
 import ru.lainer.springcore.ioc_container.annotation_based.qualifier.Magnet;
+import ru.lainer.springcore.ioc_container.annotation_based.resource.ConfigMovie;
+import ru.lainer.springcore.ioc_container.annotation_based.resource.SimpleMovieLister;
 import ru.lainer.springcore.ioc_container.autowiring.by_name.Bean1;
 import ru.lainer.springcore.ioc_container.autowiring.by_name.ConfigByName;
 import ru.lainer.springcore.ioc_container.autowiring.by_type.Bean3;
@@ -84,6 +86,11 @@ public class SpringCoreApplication {
     magnet.printDouble();
     magnet.printMapDouble();
     magnet.printArrayDouble();
+
+    //Для демонстрации использования @Resource
+    ApplicationContext movie = new AnnotationConfigApplicationContext(ConfigMovie.class);
+    SimpleMovieLister movieLister = movie.getBean(SimpleMovieLister.class);
+    movieLister.printMovies();
   }
 
 }

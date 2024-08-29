@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.lainer.springcore.ioc_container.annotation_based.postconstruct_predestroy.Bean7;
+import ru.lainer.springcore.ioc_container.annotation_based.postconstruct_predestroy.ConfigBean6;
 import ru.lainer.springcore.ioc_container.annotation_based.qualifier.ConfigStore;
 import ru.lainer.springcore.ioc_container.annotation_based.qualifier.Magnet;
 import ru.lainer.springcore.ioc_container.annotation_based.resource.ConfigMovie;
@@ -98,6 +100,11 @@ public class SpringCoreApplication {
     ApplicationContext valueCntx = new AnnotationConfigApplicationContext(ConfigValue.class);
     Bean5 bean5 = valueCntx.getBean(Bean5.class);
     bean5.printInfo();
+
+    //Для демонстрации использования @PostConstruct
+    ApplicationContext bean6_7Context = new AnnotationConfigApplicationContext(ConfigBean6.class);
+    Bean7 bean7 = bean6_7Context.getBean(Bean7.class);
+    bean7.printInfo();
   }
 
 }

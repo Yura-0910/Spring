@@ -28,6 +28,8 @@ import ru.lainer.springcore.ioc_container.di.constructor.Config;
 import ru.lainer.springcore.ioc_container.di.constructor.Student;
 import ru.lainer.springcore.ioc_container.instantiation.sfm_two.Compass;
 import ru.lainer.springcore.ioc_container.instantiation.sfm_two.ConfigForCompass;
+import ru.lainer.springcore.ioc_container.java_based.declaring_bean.Bean9;
+import ru.lainer.springcore.ioc_container.java_based.declaring_bean.Config9;
 
 
 @SpringBootApplication
@@ -112,6 +114,11 @@ public class SpringCoreApplication {
     ApplicationContext bean8Context = new AnnotationConfigApplicationContext(ConfigBean8.class);
     Bean8 bean8 = bean8Context.getBean(Bean8.class);
     bean8.printInfo();
+
+    //Для демонстрации объявления bean-а в "default method-е" интерфейса
+    ApplicationContext context9 = new AnnotationConfigApplicationContext(Config9.class);
+    Bean9 bean9 = context9.getBean(Bean9.class);
+    bean9.printInfo();
   }
 
 }

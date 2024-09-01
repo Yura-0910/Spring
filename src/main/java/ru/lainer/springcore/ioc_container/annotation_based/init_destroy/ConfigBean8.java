@@ -19,4 +19,12 @@ public class ConfigBean8 {
   public Bean8 destroy(){
     return new Bean8();
   }
+
+  //initMethod можно самому вызывать
+  @Bean
+  public Bean12 bean12(){
+    Bean12 bean12 = new Bean12();
+    bean12.myOwnInit();
+    return bean12;
+  }
 }

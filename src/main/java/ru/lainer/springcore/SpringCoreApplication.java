@@ -32,6 +32,8 @@ import ru.lainer.springcore.ioc_container.java_based.bean_dependencies.Bean11;
 import ru.lainer.springcore.ioc_container.java_based.bean_dependencies.Config1011;
 import ru.lainer.springcore.ioc_container.java_based.declaring_bean.Bean9;
 import ru.lainer.springcore.ioc_container.java_based.declaring_bean.Config9;
+import ru.lainer.springcore.ioc_container.java_based.scope.Bean13;
+import ru.lainer.springcore.ioc_container.java_based.scope.Config13;
 
 
 @SpringBootApplication
@@ -126,6 +128,12 @@ public class SpringCoreApplication {
     ApplicationContext context1011 = new AnnotationConfigApplicationContext(Config1011.class);
     Bean11 bean11 = context1011.getBean(Bean11.class);
     bean11.printInfo();
+
+    //Для демонстрации установки бину другого Scope
+    ApplicationContext context13 = new AnnotationConfigApplicationContext(Config13.class);
+    Bean13 bean13 = context13.getBean(Bean13.class);
+    bean13.increaseCount();
+    bean13.increaseCount();
   }
 
 }

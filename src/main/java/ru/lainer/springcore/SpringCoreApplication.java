@@ -33,6 +33,9 @@ import ru.lainer.springcore.ioc_container.java_based.bean_dependencies.Bean15;
 import ru.lainer.springcore.ioc_container.java_based.bean_dependencies.Config1011;
 import ru.lainer.springcore.ioc_container.java_based.declaring_bean.Bean9;
 import ru.lainer.springcore.ioc_container.java_based.declaring_bean.Config9;
+import ru.lainer.springcore.ioc_container.java_based.my_import.Bean16;
+import ru.lainer.springcore.ioc_container.java_based.my_import.Bean17;
+import ru.lainer.springcore.ioc_container.java_based.my_import.Config17;
 import ru.lainer.springcore.ioc_container.java_based.scope.Bean13;
 import ru.lainer.springcore.ioc_container.java_based.scope.Config13;
 
@@ -137,6 +140,13 @@ public class SpringCoreApplication {
     Bean13 bean13 = context13.getBean(Bean13.class);
     bean13.increaseCount();
     bean13.increaseCount();
+
+    //Для демонстрации аннотации Import
+    ApplicationContext context14 = new AnnotationConfigApplicationContext(Config17.class);
+    Bean16 bean16 = context14.getBean(Bean16.class);
+    Bean17 bean17 = context14.getBean(Bean17.class);
+    bean16.printInfo();
+    bean17.printInfo();
   }
 
 }

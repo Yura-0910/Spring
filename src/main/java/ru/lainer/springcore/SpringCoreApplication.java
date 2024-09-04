@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.SimpleErrors;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.Bean8;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.ConfigBean8;
 import ru.lainer.springcore.ioc_container.annotation_based.postconstruct_predestroy.Bean7;
@@ -38,6 +40,9 @@ import ru.lainer.springcore.ioc_container.java_based.my_import.Bean17;
 import ru.lainer.springcore.ioc_container.java_based.my_import.Config17;
 import ru.lainer.springcore.ioc_container.java_based.scope.Bean13;
 import ru.lainer.springcore.ioc_container.java_based.scope.Config13;
+import ru.lainer.springcore.validation.objects.Person;
+import ru.lainer.springcore.validation.objects.PersonConfig;
+import ru.lainer.springcore.validation.objects.PersonValidator;
 
 
 @SpringBootApplication
@@ -147,6 +152,16 @@ public class SpringCoreApplication {
     Bean17 bean17 = context14.getBean(Bean17.class);
     bean16.printInfo();
     bean17.printInfo();
-  }
 
+    //Валидация объекта (через интерфейс Validator)
+    ApplicationContext context15 = new AnnotationConfigApplicationContext(PersonConfig.class);
+    Person person = context15.getBean(Person.class);
+    PersonValidator personValidator = context15.getBean(PersonValidator.class);
+    SimpleErrors errors = context15.getBean(SimpleErrors.class);
+    personValidator.validate(person, errors);
+    if (errors.hasErrors()) {
+      System.out.println("Ошибки валидации:");
+      errors.getFieldErrors().forEach(System.out::println);
+    }
+  }
 }

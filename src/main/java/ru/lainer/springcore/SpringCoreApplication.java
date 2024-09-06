@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.validation.SimpleErrors;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.Bean8;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.ConfigBean8;
@@ -39,6 +40,7 @@ import ru.lainer.springcore.ioc_container.java_based.my_import.Bean17;
 import ru.lainer.springcore.ioc_container.java_based.my_import.Config17;
 import ru.lainer.springcore.ioc_container.java_based.scope.Bean13;
 import ru.lainer.springcore.ioc_container.java_based.scope.Config13;
+import ru.lainer.springcore.type_conversion.built_in.Config20;
 import ru.lainer.springcore.validation.bean.Bean19;
 import ru.lainer.springcore.validation.bean.Config18;
 import ru.lainer.springcore.validation.objects.Person;
@@ -169,5 +171,11 @@ public class SpringCoreApplication {
     ApplicationContext context16 = new AnnotationConfigApplicationContext(Config18.class);
     Bean19 bean19 = context16.getBean(Bean19.class);
     bean19.printInfo();
+
+    //Для демонстрации "Type Conversion" через ConversionService
+    ApplicationContext context20 = new AnnotationConfigApplicationContext(Config20.class);
+    ConversionService conversionService = context20.getBean(ConversionService.class);
+    System.out.println("Преобразование "+conversionService.convert("12345", Integer.class)+
+        " в Integer");
   }
 }

@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.SimpleErrors;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.Bean8;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.ConfigBean8;
@@ -40,6 +39,8 @@ import ru.lainer.springcore.ioc_container.java_based.my_import.Bean17;
 import ru.lainer.springcore.ioc_container.java_based.my_import.Config17;
 import ru.lainer.springcore.ioc_container.java_based.scope.Bean13;
 import ru.lainer.springcore.ioc_container.java_based.scope.Config13;
+import ru.lainer.springcore.validation.bean.Bean19;
+import ru.lainer.springcore.validation.bean.Config18;
 import ru.lainer.springcore.validation.objects.Person;
 import ru.lainer.springcore.validation.objects.PersonConfig;
 import ru.lainer.springcore.validation.objects.PersonValidator;
@@ -163,5 +164,10 @@ public class SpringCoreApplication {
       System.out.println("Ошибки валидации:");
       errors.getFieldErrors().forEach(System.out::println);
     }
+
+    //Валидация бина через аннотации
+    ApplicationContext context16 = new AnnotationConfigApplicationContext(Config18.class);
+    Bean19 bean19 = context16.getBean(Bean19.class);
+    bean19.printInfo();
   }
 }

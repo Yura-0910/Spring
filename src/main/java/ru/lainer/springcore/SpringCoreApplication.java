@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.validation.SimpleErrors;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.Bean8;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.ConfigBean8;
@@ -41,6 +42,8 @@ import ru.lainer.springcore.ioc_container.java_based.my_import.Config17;
 import ru.lainer.springcore.ioc_container.java_based.scope.Bean13;
 import ru.lainer.springcore.ioc_container.java_based.scope.Config13;
 import ru.lainer.springcore.type_conversion.built_in.Config20;
+import ru.lainer.springcore.type_conversion.custom.Bean21;
+import ru.lainer.springcore.type_conversion.custom.Config21;
 import ru.lainer.springcore.validation.bean.Bean19;
 import ru.lainer.springcore.validation.bean.Config18;
 import ru.lainer.springcore.validation.objects.Person;
@@ -172,10 +175,16 @@ public class SpringCoreApplication {
     Bean19 bean19 = context16.getBean(Bean19.class);
     bean19.printInfo();
 
-    //Для демонстрации "Type Conversion" через ConversionService
+    //Для демонстрации "Type Conversion" через интерфейс ConversionService
     ApplicationContext context20 = new AnnotationConfigApplicationContext(Config20.class);
     ConversionService conversionService = context20.getBean(ConversionService.class);
-    System.out.println("Преобразование "+conversionService.convert("12345", Integer.class)+
+    System.out.println("Преобразование " + conversionService.convert("12345", Integer.class) +
         " в Integer");
+
+    //Для демонстрации пользовательского "Type Conversion" через интерфейс Converter
+    ApplicationContext context21 = new AnnotationConfigApplicationContext(Config21.class);
+    GenericConversionService genConvService = context21.getBean(GenericConversionService.class);
+    Bean21 bean21 = genConvService.convert("9,13.0", Bean21.class);
+    System.out.println("Преобразовали Bean21 из строки в объект " + bean21);
   }
 }

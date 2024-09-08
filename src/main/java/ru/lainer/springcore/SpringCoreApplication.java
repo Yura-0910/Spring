@@ -41,6 +41,8 @@ import ru.lainer.springcore.ioc_container.java_based.my_import.Bean17;
 import ru.lainer.springcore.ioc_container.java_based.my_import.Config17;
 import ru.lainer.springcore.ioc_container.java_based.scope.Bean13;
 import ru.lainer.springcore.ioc_container.java_based.scope.Config13;
+import ru.lainer.springcore.spel.ex1.Bean22;
+import ru.lainer.springcore.spel.ex1.Config22;
 import ru.lainer.springcore.type_conversion.built_in.Config20;
 import ru.lainer.springcore.type_conversion.custom.Bean21;
 import ru.lainer.springcore.type_conversion.custom.Config21;
@@ -186,5 +188,15 @@ public class SpringCoreApplication {
     GenericConversionService genConvService = context21.getBean(GenericConversionService.class);
     Bean21 bean21 = genConvService.convert("9,13.0", Bean21.class);
     System.out.println("Преобразовали Bean21 из строки в объект " + bean21);
+
+    //Для демонстрации использования SPeL в объявлении бина
+    ApplicationContext context22 = new AnnotationConfigApplicationContext(Config22.class);
+    Bean22 bean22 = context22.getBean(Bean22.class);
+    System.out.println("SPeL: = " + bean22.getField1());
+    System.out.println("SPeL: = " + bean22.getField2());
+    System.out.println("SPeL: = " + bean22.isField3());
+    System.out.println("SPeL: = " + bean22.isField4());
+    System.out.println("SPeL: = " + bean22.isField5());
+    System.out.println("SPeL: = " + bean22.getField6());
   }
 }

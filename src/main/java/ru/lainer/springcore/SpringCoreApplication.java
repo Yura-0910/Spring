@@ -43,6 +43,8 @@ import ru.lainer.springcore.ioc_container.java_based.scope.Bean13;
 import ru.lainer.springcore.ioc_container.java_based.scope.Config13;
 import ru.lainer.springcore.spel.ex1.Bean22;
 import ru.lainer.springcore.spel.ex1.Config22;
+import ru.lainer.springcore.spel.ex2.Bean24;
+import ru.lainer.springcore.spel.ex2.Config24;
 import ru.lainer.springcore.type_conversion.built_in.Config20;
 import ru.lainer.springcore.type_conversion.custom.Bean21;
 import ru.lainer.springcore.type_conversion.custom.Config21;
@@ -198,5 +200,10 @@ public class SpringCoreApplication {
     System.out.println("SPeL: = " + bean22.isField4());
     System.out.println("SPeL: = " + bean22.isField5());
     System.out.println("SPeL: = " + bean22.getField6());
+
+    //Для демонстрации использования SPeL в ручном режиме
+    ApplicationContext context24 = new AnnotationConfigApplicationContext(Config24.class);
+    Bean24 bean24 = context24.getBean(Bean24.class);
+    bean24.parsingManually();
   }
 }

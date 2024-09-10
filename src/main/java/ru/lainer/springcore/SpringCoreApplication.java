@@ -7,6 +7,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.validation.SimpleErrors;
+import ru.lainer.springcore.aop.ex1.Bean26;
+import ru.lainer.springcore.aop.ex1.Config26;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.Bean8;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.ConfigBean8;
 import ru.lainer.springcore.ioc_container.annotation_based.postconstruct_predestroy.Bean7;
@@ -205,5 +207,19 @@ public class SpringCoreApplication {
     ApplicationContext context24 = new AnnotationConfigApplicationContext(Config24.class);
     Bean24 bean24 = context24.getBean(Bean24.class);
     bean24.parsingManually();
+
+    //Для демонстрации работы AOP
+    ApplicationContext context26 = new AnnotationConfigApplicationContext(Config26.class);
+    Bean26 bean26 = context26.getBean(Bean26.class);
+    bean26.printInfo();
+    bean26.printInfo2();
+    try {
+      bean26.throwAnException();
+    }
+    catch (NullPointerException e){
+      System.out.println("Обработали исключение типа NullPointerException");
+    }
+    int result = bean26.forAround();
+    System.out.println("Новый результат метода forAround = " + result);
   }
 }

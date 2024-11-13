@@ -17,9 +17,6 @@ import ru.lainer.springsecurity.shared.dto.SignUpDTO;
 import ru.lainer.springsecurity.shared.services.ServiceJwt;
 import ru.lainer.springsecurity.shared.services.ServiceSignUpJwt;
 
-/*
- * Регистрация нового пользователя
- */
 @RestController
 @RequestMapping("/auth")
 @Profile("profileJWT")
@@ -35,12 +32,18 @@ public class ControllerAuthJWT {
     this.serviceJwt = serviceJwt;
   }
 
+  /**
+   * Регистрация нового пользователя
+   */
   @PostMapping("/signUpJWT")
   public ResponseEntity<String> signUp(@RequestBody SignUpDTO signUpDTO)
       throws NoSuchAlgorithmException, InvalidKeySpecException {
     return serviceSignUpJwt.signUp(signUpDTO);
   }
 
+  /**
+   * Аутентификация\Авторизация
+   */
   @PostMapping("signInJWT")
   public ResponseEntity<String> signIn() {
     //получаем username, который прошел успешную аутентификацию

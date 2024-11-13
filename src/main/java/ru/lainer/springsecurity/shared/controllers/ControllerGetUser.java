@@ -9,24 +9,24 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-/*
- * Извлечение логина\пароля\ролей из SecurityContextHolder
- */
+
 @RestController
 @RequestMapping("/api")
 @Profile("difFilters")
 public class ControllerGetUser {
 
+  /**
+   * Извлечение логина\пароля\ролей из SecurityContextHolder
+   */
   @GetMapping("/getUser")
   public String getUser() {
     String result = "";
     /*
-     SecurityContextHolder доступен всем в рамках одного потока и его не надо внедрять.
+     SecurityContextHolder доступен всем и его не надо внедрять.
 
      SecurityContext всегда будет != null, так как сохранение логина\пароля в SecurityContextHolder,
-     минуя этап аутентификации:: происходит в Filter1, а этот фильтр(Filter1) срабатывает
-     при каждом запросе и все фильтры завершают свою работу до того, как начнет выполняться тело
-     данного метода "getUser()"
+     происходит в Filter1, а этот фильтр(Filter1) срабатывает при каждом запросе и все фильтры
+     завершают свою работу до того, как начнет выполняться тело данного метода "getUser()"
      */
     SecurityContext context = SecurityContextHolder.getContext();
     Authentication authentication = context.getAuthentication();

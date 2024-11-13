@@ -15,16 +15,19 @@ import ru.lainer.springsecurity.shared.entity.Roles;
 import ru.lainer.springsecurity.shared.repository.RoleRepository;
 import ru.lainer.springsecurity.shared.repository.UserRepository;
 
+/**
+ * Здесь происходит регистрация нового пользователя
+ */
 @Service
 @Profile("loginPasswordInDataBase")
-public class ServiceSignUp {
+public class ServiceSignUpFormLogin {
 
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
   private final RoleRepository roleRepository;
 
   @Autowired
-  public ServiceSignUp(UserRepository userRepository, PasswordEncoder passwordEncoder,
+  public ServiceSignUpFormLogin(UserRepository userRepository, PasswordEncoder passwordEncoder,
       RoleRepository roleRepository) {
     this.userRepository = userRepository;
     this.passwordEncoder = passwordEncoder;

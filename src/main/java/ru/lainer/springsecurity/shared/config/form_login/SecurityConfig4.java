@@ -12,8 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
-import ru.lainer.springsecurity.shared.filters.FilterBasicAuth;
-import ru.lainer.springsecurity.shared.filters.FilterSignIn;
+import ru.lainer.springsecurity.shared.filters.FilterAuthFormLogin;
 import ru.lainer.springsecurity.shared.user_details_service.UserDetailsServiceImpl;
 
 /*
@@ -43,8 +42,8 @@ public class SecurityConfig4 {
   }
 
   @Bean
-  public FilterSignIn filterSignIn() {
-    return new FilterSignIn(userDetailsServiceImpl, requestMatcher());
+  public FilterAuthFormLogin filterSignIn() {
+    return new FilterAuthFormLogin(userDetailsServiceImpl, requestMatcher());
   }
 
   @Bean

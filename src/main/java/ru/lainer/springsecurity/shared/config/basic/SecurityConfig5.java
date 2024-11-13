@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ru.lainer.springsecurity.shared.filters.FilterBasicAuth;
+import ru.lainer.springsecurity.shared.filters.FilterAuthBasic;
 
 /**
  * Config для "Basic Authentication"
@@ -18,11 +18,11 @@ import ru.lainer.springsecurity.shared.filters.FilterBasicAuth;
 @EnableWebSecurity(debug = true)
 @Profile("basicAuth")
 public class SecurityConfig5 {
-  private FilterBasicAuth filterBasicAuth;
+  private FilterAuthBasic filterAuthBasic;
 
   @Autowired
-  public SecurityConfig5(FilterBasicAuth filterBasicAuth) {
-    this.filterBasicAuth = filterBasicAuth;
+  public SecurityConfig5(FilterAuthBasic filterAuthBasic) {
+    this.filterAuthBasic = filterAuthBasic;
   }
 
   @Bean
@@ -31,7 +31,7 @@ public class SecurityConfig5 {
         .authorizeHttpRequests(authorize -> authorize
             .anyRequest().authenticated())
         .httpBasic(Customizer.withDefaults())
-        .addFilterBefore(filterBasicAuth, UsernamePasswordAuthenticationFilter.class);
+        .addFilterBefore(filterAuthBasic, UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
 }

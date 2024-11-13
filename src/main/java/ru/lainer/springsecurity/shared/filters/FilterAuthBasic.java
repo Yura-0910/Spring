@@ -15,15 +15,18 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 import ru.lainer.springsecurity.shared.user_details_service.UserDetailsServiceImpl;
 
+/**
+ * Фильтр проводит аутентификацию
+ */
 @Component
 @Profile("basicAuth")
-public class FilterBasicAuth extends GenericFilterBean {
+public class FilterAuthBasic extends GenericFilterBean {
 
   private RequestMatcher requestMatcher;
   private UserDetailsServiceImpl userDetailsServiceImpl;
 
   @Autowired
-  public FilterBasicAuth(UserDetailsServiceImpl userDetailsServiceImpl,
+  public FilterAuthBasic(UserDetailsServiceImpl userDetailsServiceImpl,
       RequestMatcher requestMatcher) {
     this.userDetailsServiceImpl = userDetailsServiceImpl;
     this.requestMatcher = requestMatcher;
@@ -34,6 +37,7 @@ public class FilterBasicAuth extends GenericFilterBean {
       throws IOException, ServletException {
 
     HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+    //Если URL запроса = /api/basicAuth и метод GET, то извлекаем Header
     if (requestMatcher.matches(httpServletRequest) && httpServletRequest.getMethod()
         .equals("GET")) {
       String loginPassword = httpServletRequest.getHeader("authorization");
@@ -44,6 +48,7 @@ public class FilterBasicAuth extends GenericFilterBean {
       String convertByteToString = new String(decodedBytes, StandardCharsets.UTF_8);
       String[] arrayWithLoginPwd = convertByteToString.split(":");
       String loginFromRequest = arrayWithLoginPwd[0];
+      //Тут начинается аутентификация
       userDetailsServiceImpl.loadUserByUsername(loginFromRequest);
     }
     chain.doFilter(request, response);

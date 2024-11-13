@@ -29,8 +29,9 @@ public class ServiceJwt {
   private String passwordFromJWT = null;
 
   /**
-   * @param myUser данные пользователя
-   * @return токен из трех частей
+   * Генерируем токен
+   * @param myUser данные пользователя, указанные при регистрации
+   * @return токен из трех частей, разделенные точкой
    */
   public String generateToken(MyUser myUser)
       throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -40,7 +41,7 @@ public class ServiceJwt {
     /*
      * При генерации используем пароль из myUser, указанный при регистрации нового пользователя
      * Тогда при проведении аутентификации можно будет использовать не только логины (совпадают ли),
-     * но и пароли (совпадают ли). Но JWT токен тогда более огромный.
+     * но и пароли (совпадают ли). Но JWT токен тогда более огромный
      */
     someData.put("user_pwd", myUser.getPassword());
     someData.put("listRoles", myUser.getListRoles());
@@ -58,12 +59,6 @@ public class ServiceJwt {
     //.signWith(pair.getPrivate(), alg).compact(); //Вариант 3 - RSA
   }
 
-  /**
-   * Получение ключа для подписи токена
-   *
-   * @return ключ
-   */
-
   //Вариант 1:: создаем SecretKey на основе ключевого слова
   private SecretKey getSigningKey() {
     byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey); //HS384
@@ -72,12 +67,14 @@ public class ServiceJwt {
   }
 
   //Вариант 2:: автоматически генерируем SecretKey (без использования ключевого слова)
-  /*private SecretKey getSigningKey() {
-  SecretKey secretKey = SIG.HS256.key().build();
+  /*
+  private SecretKey getSigningKey() {
+    SecretKey secretKey = SIG.HS256.key().build();
     System.out.println("SecretKey = " + secretKey.toString());
     return secretKey;
   }*/
 
+  //Извлекаем UserName из JWT токена
   public String extractUserName(String token) {
      /*
      1) метод parser: создаем JwtParserBuilder
@@ -106,6 +103,7 @@ public class ServiceJwt {
     return loginFromJWT;
   }
 
+  //Проверяем, не истекло ли время жизни токена
   public boolean isTokenNotExpired(String token) {
     boolean notExpired = false;
     if (loginFromJWT != null) {

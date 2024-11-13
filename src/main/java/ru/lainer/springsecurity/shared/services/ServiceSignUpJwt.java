@@ -17,6 +17,9 @@ import ru.lainer.springsecurity.shared.entity.Roles;
 import ru.lainer.springsecurity.shared.repository.RoleRepository;
 import ru.lainer.springsecurity.shared.repository.UserRepository;
 
+/**
+ * Здесь происходит регистрация нового пользователя
+ */
 @Service
 @RequiredArgsConstructor
 @Profile("profileJWT")

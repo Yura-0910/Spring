@@ -11,9 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import ru.lainer.springsecurity.shared.filters.FilterAuthenticationJWT;
+import ru.lainer.springsecurity.shared.filters.FilterAuthJWT;
 
-/*
+/**
  * Config для "JWT Authentication"
  */
 @Configuration
@@ -22,7 +22,7 @@ import ru.lainer.springsecurity.shared.filters.FilterAuthenticationJWT;
 @RequiredArgsConstructor
 public class Config6 {
 
-  private final FilterAuthenticationJWT FilterAuthenticationJWT;
+  private final FilterAuthJWT FilterAuthJWT;
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -40,7 +40,7 @@ public class Config6 {
             .defaultSuccessUrl("/success")
             .failureUrl("/error")
             .permitAll())
-        .addFilterBefore(FilterAuthenticationJWT, UsernamePasswordAuthenticationFilter.class);
+        .addFilterBefore(FilterAuthJWT, UsernamePasswordAuthenticationFilter.class);
     //Для доступа к H2-Console
     http.csrf(csrf -> csrf.disable());
     http.headers(h -> h.frameOptions(f -> f.disable()));

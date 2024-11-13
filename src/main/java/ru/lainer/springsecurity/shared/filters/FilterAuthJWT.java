@@ -17,10 +17,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import ru.lainer.springsecurity.shared.services.ServiceJwt;
 import ru.lainer.springsecurity.shared.user_details_service.UserDetailsServiceImpl;
 
+/**
+ * Фильтр осуществляет аутентификацию
+ */
 @Component
 @Profile("profileJWT")
 @RequiredArgsConstructor
-public class FilterAuthenticationJWT extends OncePerRequestFilter {
+public class FilterAuthJWT extends OncePerRequestFilter {
 
   private final ServiceJwt serviceJwt;
   private final UserDetailsServiceImpl userDetailsServiceImpl;
@@ -43,6 +46,7 @@ public class FilterAuthenticationJWT extends OncePerRequestFilter {
     UserDetails userDetails = null;
     if (username != null && SecurityContextHolder.getContext().getAuthentication() == null &&
         !username.equals("UserNotFoundInJWT")){
+      //Заполняем UserDetails данными из БД
       userDetails = userDetailsServiceImpl.loadUserByUsername(username);
     }
     else {
@@ -50,7 +54,7 @@ public class FilterAuthenticationJWT extends OncePerRequestFilter {
       return;
     }
 
-    /**
+    /*
      *  Верификация токена и аутентификация пользователя:
      *  при извлечении username из токена мы использовали метод "verifyWith",
      *  который задает SecretKey для верификации сигнатуры (это третья часть токена). И использовали
@@ -59,14 +63,13 @@ public class FilterAuthenticationJWT extends OncePerRequestFilter {
      *  этим верифицирован токен:: значит переданный JWT токен подлинный.
      *  Таким образом остается только проверить, что не истекло время существования токена и
      *  провести аутентификацию
-     */
-    /*
+
      * Если время жизни токена не истекло и если login\пароль из запроса (т.е. из JWT токена)
      * совпадает с login-ом\паролем из БД, то есть если аутентификация прошла успешно,
      * то наполняем SecurityContextHolder данными: логин, пароль, роль (которые прошли успешную
      * аутентификацию)
      */
-    //Аутентификация внутри "if"
+    //Аутентификация внутри "if": точнее в методе isLoginAndPwdMatch
     if (userDetails != null && serviceJwt.isTokenNotExpired(jwt) &&
         serviceJwt.isLoginAndPwdMatch(userDetails.getUsername(),userDetails.getPassword())) {
 

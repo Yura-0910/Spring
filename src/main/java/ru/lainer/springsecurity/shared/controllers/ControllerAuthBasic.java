@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 @Profile("basicAuth")
-public class ControllerBasicAuth {
+public class ControllerAuthBasic {
 
   @GetMapping("/basicAuth")
   public String basicAuth() {

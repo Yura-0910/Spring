@@ -8,25 +8,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.lainer.springsecurity.shared.dto.SignUpDTO;
-import ru.lainer.springsecurity.shared.services.ServiceSignUp;
+import ru.lainer.springsecurity.shared.services.ServiceSignUpFormLogin;
 
-/**
- * Регистрация нового пользователя
- */
 @RestController
 @RequestMapping("/api")
 @Profile("loginPasswordInDataBase")
-public class ControllerSignUp {
+public class ControllerAuthFormLogin {
 
-  private final ServiceSignUp serviceSignUp;
+  private final ServiceSignUpFormLogin serviceSignUpFormLogin;
 
   @Autowired
-  public ControllerSignUp(ServiceSignUp serviceSignUp) {
-    this.serviceSignUp = serviceSignUp;
+  public ControllerAuthFormLogin(ServiceSignUpFormLogin serviceSignUpFormLogin) {
+    this.serviceSignUpFormLogin = serviceSignUpFormLogin;
   }
 
+  /**
+   * Регистрация нового пользователя
+   */
   @PostMapping("/signup")
   public ResponseEntity<String> signUp(@RequestBody SignUpDTO signUpDTO) {
-    return serviceSignUp.registerNewUser(signUpDTO);
+    return serviceSignUpFormLogin.registerNewUser(signUpDTO);
   }
 }

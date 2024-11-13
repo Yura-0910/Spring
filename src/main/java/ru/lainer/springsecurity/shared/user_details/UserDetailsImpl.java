@@ -7,6 +7,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.lainer.springsecurity.shared.entity.MyUser;
 
+/**
+ * Для работы со Spring Security надо обязательно реализовать интерфейс UserDetails
+ */
 public class UserDetailsImpl implements UserDetails {
   private MyUser myUser;
 

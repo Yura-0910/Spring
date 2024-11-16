@@ -44,7 +44,7 @@ public class ControllerAuthJWT {
   /**
    * Аутентификация\Авторизация
    */
-  @PostMapping("signInJWT")
+  @PostMapping("/signInJWT")
   public ResponseEntity<String> signIn() {
     //получаем username, который прошел успешную аутентификацию
     SecurityContext context = SecurityContextHolder.getContext();

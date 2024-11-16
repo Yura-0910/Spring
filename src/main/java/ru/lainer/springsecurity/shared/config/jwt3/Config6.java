@@ -33,6 +33,7 @@ public class Config6 {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
         .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
             .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll()
             .anyRequest().authenticated())
         .addFilterBefore(FilterAuthJWT, UsernamePasswordAuthenticationFilter.class);

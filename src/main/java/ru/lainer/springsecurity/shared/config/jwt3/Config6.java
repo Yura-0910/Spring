@@ -35,11 +35,6 @@ public class Config6 {
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll()
             .anyRequest().authenticated())
-        .formLogin(form -> form
-            .loginPage("/login")
-            .defaultSuccessUrl("/success")
-            .failureUrl("/error")
-            .permitAll())
         .addFilterBefore(FilterAuthJWT, UsernamePasswordAuthenticationFilter.class);
     //Для доступа к H2-Console
     http.csrf(csrf -> csrf.disable());

@@ -39,8 +39,8 @@ class FormLoginTests {
     String strURL = "/api/signup";
 
     SignUpDTO signUpDTO = new SignUpDTO();
-    signUpDTO.setLogin("test_user");
-    signUpDTO.setPassword("test_pwd");
+    signUpDTO.setLogin("form_user");
+    signUpDTO.setPassword("form_pwd");
     signUpDTO.setRoles(new String[]{"USER", "ADMIN"});
 
     ResponseEntity<String> response = testRestTemplate.postForEntity(strURL, signUpDTO,
@@ -63,10 +63,10 @@ class FormLoginTests {
   void test_002_auth() throws Exception {
     mockMvc
         .perform(formLogin("/login")
-            .user("test_user")
-            .password("test_pwd"))
+            .user("form_user")
+            .password("form_pwd"))
         .andExpect(authenticated()
-            .withUsername("test_user"))
+            .withUsername("form_user"))
         .andExpect(redirectedUrl("/success"));
   }
 
@@ -76,8 +76,8 @@ class FormLoginTests {
   void test_003_auth_fail() throws Exception {
     mockMvc
         .perform(formLogin("/login")
-            .user("test_user")
-            .password("test_pwd_fail"))
+            .user("form_user")
+            .password("form_pwd_fail"))
         .andExpect(unauthenticated())
         .andExpect(redirectedUrl("/error"));
   }

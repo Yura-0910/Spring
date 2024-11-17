@@ -1,0 +1,8 @@
+services:
+  spring-security:
+    container_name: spring-security-backend-cnt-prod
+    image: springsecurityimage:latest
+    #environment:
+    #  - "SPRING_PROFILES_ACTIVE=profileJWT"
+    ports:
+      - "8080:8080"

@@ -33,8 +33,6 @@ sudo docker push spring-security-backend.cr.cloud.ru/my-image:lainer\
     "sudo docker ps" - список запущенных контейнеров.\
     "sudo docker stop <container_name_or_id>" - остановить запущенный контейнер\
 
-Публичный URL:: https://spring-security-backend-cnt-app.containers.cloud.ru\
-
 [...] Публичный доступ позволяет скачивать артефакты из реестра без авторизации любому пользователю, 
 которому известен URI артефакта. После создания реестра тип доступа изменить нельзя.
 Добавить в резюме или сюда - ссылку на скачивание образа докера (чтоб локально развернуть)

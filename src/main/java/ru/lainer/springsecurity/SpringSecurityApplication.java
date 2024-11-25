@@ -11,7 +11,6 @@ public class SpringSecurityApplication {
 	}
 
 	//TODO прокоментировать весь код (в стиле Java Doc) + ReadMe.md
-	//TODO Описать про профили и про запросы для каждого профиля в ReadMe.md
 
 	//TODO общую функциональность касающуюся заполнения MyUSER (из ServiceSignUpJwt и ServiceSignUp)
 	// вынести в отдельный класс\метод (рефакторинг)

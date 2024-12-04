@@ -1,5 +1,6 @@
 package ru.lainer.springcore;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -9,6 +10,7 @@ import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.validation.SimpleErrors;
 import ru.lainer.springcore.aop.ex1.Bean26;
 import ru.lainer.springcore.aop.ex1.Config26;
+import ru.lainer.springcore.bean_lifecycle.ex1.Component1;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.Bean8;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.ConfigBean8;
 import ru.lainer.springcore.ioc_container.annotation_based.postconstruct_predestroy.Bean7;
@@ -59,6 +61,13 @@ import ru.lainer.springcore.validation.objects.PersonValidator;
 
 @SpringBootApplication
 public class SpringCoreApplication {
+
+  private static Component1 component1; //Для демонстрации использования @PostConstruct
+
+  @Autowired
+  public SpringCoreApplication(Component1 component1) {
+    this.component1 = component1;
+  }
 
   public static void main(String[] args) {
     SpringApplication.run(SpringCoreApplication.class, args);
@@ -221,5 +230,8 @@ public class SpringCoreApplication {
     }
     int result = bean26.forAround();
     System.out.println("Новый результат метода forAround = " + result);
+
+    //Для демонстрации использования @PostConstruct
+    component1.onlyPrint();
   }
 }

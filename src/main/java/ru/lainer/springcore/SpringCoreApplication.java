@@ -233,5 +233,8 @@ public class SpringCoreApplication {
 
     //Для демонстрации использования @PostConstruct
     component1.onlyPrint();
+
+    //Для демонстрации использования интерфейса BeanPostProcessor
+    //Достаточно создать бин MyBeanPostProcessor и бин Bean27, ничего другого не надо.
   }
 }

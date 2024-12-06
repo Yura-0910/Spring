@@ -10,6 +10,8 @@ import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.validation.SimpleErrors;
 import ru.lainer.springcore.aop.ex1.Bean26;
 import ru.lainer.springcore.aop.ex1.Config26;
+import ru.lainer.springcore.bean_lifecycle.destroy.ex5.Config30;
+import ru.lainer.springcore.bean_lifecycle.destroy.ex5.MyDisposableBean;
 import ru.lainer.springcore.bean_lifecycle.ex1.Component1;
 import ru.lainer.springcore.bean_lifecycle.ex4.Bean29;
 import ru.lainer.springcore.bean_lifecycle.ex4.Config29;
@@ -246,5 +248,10 @@ public class SpringCoreApplication {
     ApplicationContext context29 = new AnnotationConfigApplicationContext(Config29.class);
     Bean29 bean29 = context29.getBean(Bean29.class);
     bean29.printInfo();
+
+    //Для демонстрации использования интерфейса DisposableBean
+    ApplicationContext context30 = new AnnotationConfigApplicationContext(Config30.class);
+    MyDisposableBean myDisposableBean = context30.getBean(MyDisposableBean.class);
+    myDisposableBean.print();
   }
 }

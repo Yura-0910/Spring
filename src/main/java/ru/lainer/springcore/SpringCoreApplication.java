@@ -236,5 +236,8 @@ public class SpringCoreApplication {
 
     //Для демонстрации использования интерфейса BeanPostProcessor
     //Достаточно создать бин MyBeanPostProcessor и бин Bean27, ничего другого не надо.
+
+    //Для демонстрации использования интерфейса InitializingBean
+    //Достаточно создать бин MyInitializingBean, ничего другого не надо.
   }
 }

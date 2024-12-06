@@ -11,6 +11,8 @@ import org.springframework.validation.SimpleErrors;
 import ru.lainer.springcore.aop.ex1.Bean26;
 import ru.lainer.springcore.aop.ex1.Config26;
 import ru.lainer.springcore.bean_lifecycle.ex1.Component1;
+import ru.lainer.springcore.bean_lifecycle.ex4.Bean29;
+import ru.lainer.springcore.bean_lifecycle.ex4.Config29;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.Bean8;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.ConfigBean8;
 import ru.lainer.springcore.ioc_container.annotation_based.postconstruct_predestroy.Bean7;
@@ -239,5 +241,10 @@ public class SpringCoreApplication {
 
     //Для демонстрации использования интерфейса InitializingBean
     //Достаточно создать бин MyInitializingBean, ничего другого не надо.
+
+    //Для демонстрации использования параметров initMethod и destroyMethod
+    ApplicationContext context29 = new AnnotationConfigApplicationContext(Config29.class);
+    Bean29 bean29 = context29.getBean(Bean29.class);
+    bean29.printInfo();
   }
 }

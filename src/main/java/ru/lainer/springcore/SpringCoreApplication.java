@@ -12,6 +12,8 @@ import ru.lainer.springcore.aop.ex1.Bean26;
 import ru.lainer.springcore.aop.ex1.Config26;
 import ru.lainer.springcore.bean_lifecycle.destroy.ex5.Config30;
 import ru.lainer.springcore.bean_lifecycle.destroy.ex5.MyDisposableBean;
+import ru.lainer.springcore.bean_lifecycle.destroy.ex6.Bean31;
+import ru.lainer.springcore.bean_lifecycle.destroy.ex6.Config31;
 import ru.lainer.springcore.bean_lifecycle.ex1.Component1;
 import ru.lainer.springcore.bean_lifecycle.ex4.Bean29;
 import ru.lainer.springcore.bean_lifecycle.ex4.Config29;
@@ -253,5 +255,10 @@ public class SpringCoreApplication {
     ApplicationContext context30 = new AnnotationConfigApplicationContext(Config30.class);
     MyDisposableBean myDisposableBean = context30.getBean(MyDisposableBean.class);
     myDisposableBean.print();
+
+    //Для демонстрации использования @PreDestroy
+    ApplicationContext context31 = new AnnotationConfigApplicationContext(Config31.class);
+    Bean31 bean31 = context31.getBean(Bean31.class);
+    bean31.print();
   }
 }

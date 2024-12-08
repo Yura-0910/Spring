@@ -19,6 +19,8 @@ import ru.lainer.springcore.bean_lifecycle.destroy.ex7.Config32;
 import ru.lainer.springcore.bean_lifecycle.ex1.Component1;
 import ru.lainer.springcore.bean_lifecycle.ex4.Bean29;
 import ru.lainer.springcore.bean_lifecycle.ex4.Config29;
+import ru.lainer.springcore.bean_lifecycle.startup_shutdown.Config33;
+import ru.lainer.springcore.bean_lifecycle.startup_shutdown.MySmartLifecycle;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.Bean8;
 import ru.lainer.springcore.ioc_container.annotation_based.init_destroy.ConfigBean8;
 import ru.lainer.springcore.ioc_container.annotation_based.postconstruct_predestroy.Bean7;
@@ -267,5 +269,9 @@ public class SpringCoreApplication {
     ApplicationContext context32 = new AnnotationConfigApplicationContext(Config32.class);
     Bean32 bean32 = context32.getBean(Bean32.class);
     bean32.printInfo();
+
+    //Для демонстрации использования SmartLifecycle
+    ApplicationContext context33 = new AnnotationConfigApplicationContext(Config33.class);
+    context33.getBean(MySmartLifecycle.class);
   }
 }
